@@ -1,5 +1,6 @@
 name: Trips
 
+
 on:
   push:
     branches: [ master ]
