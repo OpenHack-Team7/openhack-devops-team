@@ -2,27 +2,27 @@ name: user-java
 
 on:
   push:
-    branches: '**'
+    branches: [ master ]
     paths:
     - 'apis/user-java/**'
     - '.github/workflows/user-java.yml'
   pull_request:
-    branches: '**'
+    branches: [ master ]
     paths:
     - 'apis/user-java/**'
     - '.github/workflows/user-java.yml'
 
 jobs:
-  user-java-maven-package:
+  job1:
     runs-on: ubuntu-latest
     steps:
     - name: Maven package
       run: |
         echo "(Dummy message) maven package"
 
-  user-java-docker-build-push-webapps-deploy:
+  job2:
     runs-on: ubuntu-latest
-    needs: [user-java-maven-package]
+    needs: [job1]
     if: github.ref == 'refs/heads/master'
 
     steps:
