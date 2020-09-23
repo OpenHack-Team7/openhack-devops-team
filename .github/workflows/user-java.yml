@@ -16,7 +16,7 @@ jobs:
   user-java-maven-package:
     runs-on: ubuntu-latest
     steps:
-    - name: Maven Package
+    - name: Maven package
       run: |
         echo "(Dummy message) maven package"
 
