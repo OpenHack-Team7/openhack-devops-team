@@ -25,7 +25,7 @@ jobs:
         docker build ./apis/poi/web/ -t openhackjqh6rwn6acr.azurecr.io/devopsoh/api-poi:${{ github.sha }}
         docker push openhackjqh6rwn6acr.azurecr.io/devopsoh/api-poi:${{ github.sha }}
 
-    - uses: azure/webapps-container-deploy@v1
+    - uses: azure/webapps-container-deploy@v2
       with:
         app-name: 'openhackjqh6rwn6poi'
         images: 'openhackjqh6rwn6acr.azurecr.io/devopsoh/api-poi:${{ github.sha }}'
