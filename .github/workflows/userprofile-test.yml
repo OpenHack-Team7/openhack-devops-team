@@ -2,7 +2,7 @@ name: Linux_Container_Node_Workflow-test
 
 on:
   push:
-    branches: [ ** ]
+    branches: [ challenge4-userprofile ]
     paths: 
       - 'apis/userprofile/**'
       - '.github/workflows/**'
