@@ -12,9 +12,6 @@ on:
     - 'apis/trips/**'
     - '.github/workflows/trips.yml'
 
-env:
-  TRIPS_PATH: './apis/trips'
-
 jobs:
   job1:
     runs-on: ubuntu-latest
