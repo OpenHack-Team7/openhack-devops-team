@@ -59,6 +59,7 @@ jobs:
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'openhackjqh6rwn6poi'
+        slot-name: 'staging'
         images: 'openhackjqh6rwn6acr.azurecr.io/devopsoh/api-poi:${{ github.sha }}'
     
     - name: Azure logout
