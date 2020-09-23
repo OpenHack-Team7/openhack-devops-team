@@ -1,6 +1,4 @@
-on:
-  push:
-    paths: 'apis/userprofile/**'
+on: [push]
 
 name: Linux_Container_Node_Workflow
 
