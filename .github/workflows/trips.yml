@@ -1,13 +1,45 @@
-on: [push]
+name: TRIPS
 
-name: trips_Linux_Container_Node_Workflow
+on:
+  push:
+    branches: [ master ]
+    paths: 
+    - 'apis/trips/**'
+    - '.github/workflows/trips.yml'
+  pull_request:
+    branches: [ master ]
+    paths: 
+    - 'apis/trips/**'
+    - '.github/workflows/trips.yml'
+
+env:
+  TRIPS_PATH: './apis/trips'
 
 jobs:
-  build-and-deploy:
+  job1:
     runs-on: ubuntu-latest
+
     steps:
-    # checkout the repo
-    - name: 'Checkout GitHub Action' 
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.101
+    - name: Install dependencies
+      run: dotnet restore './apis/trips'
+    - name: Build
+      run: dotnet build './apis/trips' --configuration Release
+    - name: Test
+      run: dotnet test './apis/trips/tests/UnitTests' --no-restore
+    - name: Publish
+      run: dotnet publish './apis/trips' -c Release -o '${{env.TRIPS_PATH}}/output'
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    
+    if: ${{ github.ref == 'refs/heads/master' }}
+    steps:
+    - name: 'Checkout GitHub Action'
       uses: actions/checkout@master
     
     - name: 'Login via Azure CLI'
@@ -32,3 +64,4 @@ jobs:
     - name: Azure logout
       run: |
         az logout
+
