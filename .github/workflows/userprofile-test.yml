@@ -1,0 +1,19 @@
+name: Linux_Container_Node_Workflow-test
+
+on:
+  push:
+    branches: [ ** ]
+    paths: 
+      - 'apis/userprofile/**'
+      - '.github/workflows/**'
+
+jobs:
+  userprofile-build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Build
+      run: docker build ./apis/userprofile/ --configuration Release
+
+    - name: Test
+      run: docker Test ./apis/userprofile/ --no-restore
