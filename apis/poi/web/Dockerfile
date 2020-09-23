@@ -19,7 +19,7 @@ ENV SQL_USER="demousersa" \
 SQL_PASSWORD="demo@pass123" \
 SQL_SERVER="openhackjqh6rwn6sql.database.windows.net" \
 SQL_DBNAME="mydrivingDB" \
-WEB_PORT="8081" \
+WEB_PORT="8080" \
 WEB_SERVER_BASE_URI="https://openhackjqh6rwn6poi.azurewebsites.net" \
 ASPNETCORE_ENVIRONMENT="Production"
 
