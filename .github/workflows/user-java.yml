@@ -1,10 +1,18 @@
-on: [push]
-
 name: user-java
 
+on:
+  push:
+    branches: '**'
+    paths: 'apis/user-java/**'
+  pull_request:
+    branches: '**'
+    paths: 'apis/user-java/**'
+
 jobs:
-  build-and-deploy:
+  user-java-docker-build-push-webapps-deploy:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+
     steps:
     # checkout the repo
     - name: 'Checkout GitHub Action' 
