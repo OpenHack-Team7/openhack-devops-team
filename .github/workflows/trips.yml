@@ -1,6 +1,6 @@
 on: [push]
 
-name: Linux_Container_Node_Workflow
+name: trips_Linux_Container_Node_Workflow
 
 jobs:
   build-and-deploy:
