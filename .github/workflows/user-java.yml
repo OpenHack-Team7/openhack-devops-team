@@ -24,3 +24,12 @@ jobs:
     - run: |
         docker build ./apis/user-java/ -t openhackjqh6rwn6acr.azurecr.io/devopsoh/api-user-java:${{ github.sha }}
         docker push openhackjqh6rwn6acr.azurecr.io/devopsoh/api-user-java:${{ github.sha }}
+
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'openhackjqh6rwn6poi'
+        images: 'openhackjqh6rwn6acr.azurecr.io/devopsoh/api-user-java:${{ github.sha }}'
+
+    - name: Azure logout
+      run: |
+        az logout
