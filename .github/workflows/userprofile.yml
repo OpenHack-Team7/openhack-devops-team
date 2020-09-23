@@ -23,4 +23,4 @@ jobs:
     
     - run: |
         docker build ./apis/userprofile/ -t openhackjqh6rwn6acr.azurecr.io/devopsoh/api-userprofile:${{ github.sha }}
-        docker push contoso.azurecr.io/nodejssampleapp:${{ github.sha }}
+        docker push openhackjqh6rwn6acr.azurecr.io/devopsoh/api-userprofile:${{ github.sha }}
