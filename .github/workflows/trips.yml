@@ -17,16 +17,11 @@ env:
 
 jobs:
   job1:
+    runs-on: ubuntu-latest
     steps:
-    - task: Go@0
-      inputs:
-        command: 'build'
-        workingDirectory: '$(System.DefaultWorkingDirectory)'
-    - task: Go@0
-      inputs:
-        command: 'test'
-        arguments: '-v'
-        workingDirectory: '$(modulePath)'
+    - name: trips package
+      run: |
+        echo "(Dummy message) maven package"
 
       
   job2:
