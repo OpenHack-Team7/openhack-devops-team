@@ -24,11 +24,11 @@ jobs:
     - run: |
         docker build ./apis/userprofile/ -t openhackjqh6rwn6acr.azurecr.io/devopsoh/api-userprofile:${{ github.sha }}
         docker push openhackjqh6rwn6acr.azurecr.io/devopsoh/api-userprofile:${{ github.sha }}
-   - uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'openhackjqh6rwn6userprofile'
-          images: 'openhackjqh6rwn6acr.azurecr.io/devopsoh/api-userprofile:${{ github.sha }}'
-          
-   - name: Azure logout
-        run: |
-          az logout
+        
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'openhackjqh6rwn6userprofile'
+        images: 'openhackjqh6rwn6acr.azurecr.io/devopsoh/api-userprofile:${{ github.sha }}'
+    - name: Azure logout
+      run: |
+        az logout
