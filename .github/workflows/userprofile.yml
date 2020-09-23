@@ -1,4 +1,6 @@
-on: [push]
+on:
+  push:
+    paths: 'apis/userprofile/**'
 
 name: Linux_Container_Node_Workflow
 
@@ -17,7 +19,7 @@ jobs:
     
     - uses: azure/docker-login@v1
       with:
-        login-server: contoso.azurecr.io
+        login-server: openhackjqh6rwn6acr.azurecr.io
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     
