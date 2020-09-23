@@ -27,7 +27,7 @@ jobs:
 
     - uses: azure/webapps-deploy@v2
       with:
-        app-name: 'openhackjqh6rwn6poi'
+        app-name: 'openhackjqh6rwn6userjava'
         images: 'openhackjqh6rwn6acr.azurecr.io/devopsoh/api-user-java:${{ github.sha }}'
 
     - name: Azure logout
