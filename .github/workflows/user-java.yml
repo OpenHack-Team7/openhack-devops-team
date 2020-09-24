@@ -61,6 +61,9 @@ jobs:
     needs: [job2]
 
     steps:
+    - name: Sleep for checking
+      run: sleep 30
+
     - name: Check the deployed service URL
       uses: jtalk/url-health-check-action@v1.2
       with:
