@@ -16,4 +16,4 @@ jobs:
       run: docker build ./apis/userprofile/ --configuration Release
 
     - name: Test
-      run: docker Test ./apis/userprofile/ --no-restore
+      run: docker run test ./apis/userprofile/ --no-restore
