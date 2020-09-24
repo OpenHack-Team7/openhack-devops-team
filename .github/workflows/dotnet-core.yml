@@ -80,3 +80,23 @@ jobs:
         url: https://openhackjqh6rwn6userjava-staging.azurewebsites.net/api/healthcheck/user-java
         max-attempts: 30
         retry-delay: 10s
+
+  job4:
+    runs-on: ubuntu-latest
+    needs: job3
+  
+    steps:
+    - name: Login via Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - name: Azure CLI script -swap production from staging
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az webapp deployment slot swap  -g openhackjqh6rwn6rg -n openhackjqh6rwn6poi --slot staging --target-slot production
+
+    - name: Azure logout
+      run: |
+        az logout
