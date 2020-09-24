@@ -1,0 +1,52 @@
+name: trips
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+    - 'apis/trips/**'
+    - '.github/workflows/trips.yml'
+  pull_request:
+    branches: [ master ]
+    paths:
+    - 'apis/trips/**'
+    - '.github/workflows/trips.yml'
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Maven package
+      run: |
+        echo "(Dummy message) maven package"
+  job2:
+    runs-on: ubuntu-latest
+    needs: [job1]
+    if: github.ref == 'refs/heads/master'
+
+    steps:
+    - name: Checkout GitHub Action
+      uses: actions/checkout@master
+    
+    - name: Login via Azure CLI
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
+    - uses: azure/docker-login@v1
+      with:
+        login-server: openhackjqh6rwn6acr.azurecr.io
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    
+    - run: |
+        docker build ./apis/trips/ -t openhackjqh6rwn6acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}
+        docker push openhackjqh6rwn6acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}
+    - uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'openhackjqh6rwn6trips'
+        images: 'openhackjqh6rwn6acr.azurecr.io/devopsoh/api-trips:${{ github.sha }}'
+
+    - name: Azure logout
+      run: |
+        az logout
